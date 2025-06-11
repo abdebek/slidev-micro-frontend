@@ -8,8 +8,16 @@ export default defineConfig({
     federation({
       name: 'shell',
       remotes: {
-        landing: 'http://localhost:3001/assets/remoteEntry.js',
-        dashboard: 'http://localhost:3002/assets/remoteEntry.js'
+        landing: {
+          external: 'http://localhost:3001/assets/remoteEntry.js',
+          from: 'vite',
+          externalType: 'url'
+        },
+        dashboard: {
+          external: 'http://localhost:3002/assets/remoteEntry.js', 
+          from: 'vite',
+          externalType: 'url'
+        }
       },
       shared: ['react', 'react-dom']
     })
