@@ -3,9 +3,28 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import { Home, BarChart3, Users, Settings } from 'lucide-react'
 import ErrorBoundary from './components/ErrorBoundary'
 
-// Lazy load microfrontends
-const LandingApp = React.lazy(() => import('landing/App'))
-const DashboardApp = React.lazy(() => import('dashboard/App'))
+// Lazy load microfrontends with error handling
+const LandingApp = React.lazy(() => 
+  import('landing/App').catch(() => ({
+    default: () => (
+      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 m-4">
+        <h3 className="text-lg font-medium text-yellow-800 mb-2">Landing Microfrontend Unavailable</h3>
+        <p className="text-yellow-700">The landing microfrontend could not be loaded. Please ensure it's running on port 3001.</p>
+      </div>
+    )
+  }))
+)
+
+const DashboardApp = React.lazy(() => 
+  import('dashboard/App').catch(() => ({
+    default: () => (
+      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 m-4">
+        <h3 className="text-lg font-medium text-yellow-800 mb-2">Dashboard Microfrontend Unavailable</h3>
+        <p className="text-yellow-700">The dashboard microfrontend could not be loaded. Please ensure it's running on port 3002.</p>
+      </div>
+    )
+  }))
+)
 
 function Navigation() {
   const location = useLocation()
