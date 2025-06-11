@@ -4,15 +4,18 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run dev:landing\" \"npm run dev:slides\"",
+    "dev": "concurrently \"npm run dev:shell\" \"npm run dev:landing\" \"npm run dev:dashboard\"",
+    "dev:shell": "cd shell && npm run dev",
     "dev:landing": "cd landing && npm run dev",
-    "dev:slides": "cd slides && npm run dev",
-    "build": "npm run build:landing && npm run build:slides",
+    "dev:dashboard": "cd dashboard && npm run dev",
+    "build": "npm run build:shell && npm run build:landing && npm run build:dashboard",
+    "build:shell": "cd shell && npm run build",
     "build:landing": "cd landing && npm run build",
-    "build:slides": "cd slides && npm run build",
-    "preview": "concurrently \"npm run preview:landing\" \"npm run preview:slides\"",
+    "build:dashboard": "cd dashboard && npm run build",
+    "preview": "concurrently \"npm run preview:shell\" \"npm run preview:landing\" \"npm run preview:dashboard\"",
+    "preview:shell": "cd shell && npm run preview",
     "preview:landing": "cd landing && npm run preview",
-    "preview:slides": "cd slides && npm run preview"
+    "preview:dashboard": "cd dashboard && npm run preview"
   },
   "dependencies": {
     "lucide-react": "^0.344.0",
@@ -35,6 +38,7 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
-    "vite": "^5.4.2"
+    "vite": "^5.4.2",
+    "@originjs/vite-plugin-federation": "^1.3.5"
   }
 }

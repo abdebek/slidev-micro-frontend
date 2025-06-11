@@ -6,10 +6,10 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: 'landing',
-      filename: 'remoteEntry.js',
-      exposes: {
-        './App': './src/App'
+      name: 'shell',
+      remotes: {
+        landing: 'http://localhost:3001/assets/remoteEntry.js',
+        dashboard: 'http://localhost:3002/assets/remoteEntry.js'
       },
       shared: ['react', 'react-dom']
     })
