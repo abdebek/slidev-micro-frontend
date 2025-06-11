@@ -1,9 +1,9 @@
 declare module 'landing/App' {
-  const LandingApp: React.ComponentType
-  export default LandingApp
+  const App: React.ComponentType
+  export default App
 }
 
 declare module 'dashboard/App' {
-  const DashboardApp: React.ComponentType
-  export default DashboardApp
+  const App: React.ComponentType
+  export default App
 }

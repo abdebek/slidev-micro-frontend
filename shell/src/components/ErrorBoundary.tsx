@@ -1,8 +1,8 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react'
+import React from 'react'
 import { AlertTriangle } from 'lucide-react'
 
 interface Props {
-  children: ReactNode
+  children: React.ReactNode
 }
 
 interface State {
@@ -10,42 +10,40 @@ interface State {
   error?: Error
 }
 
-class ErrorBoundary extends Component<Props, State> {
-  public state: State = {
-    hasError: false
+class ErrorBoundary extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props)
+    this.state = { hasError: false }
   }
 
-  public static getDerivedStateFromError(error: Error): State {
+  static getDerivedStateFromError(error: Error): State {
     return { hasError: true, error }
   }
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Microfrontend error:', error, errorInfo)
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('Microfrontend Error:', error, errorInfo)
   }
 
-  public render() {
+  render() {
     if (this.state.hasError) {
       return (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-6 m-4">
-          <div className="flex items-center">
-            <AlertTriangle className="h-6 w-6 text-red-600 mr-3" />
-            <div>
-              <h3 className="text-lg font-medium text-red-800">
+        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+          <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6">
+            <div className="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full">
+              <AlertTriangle className="w-6 h-6 text-red-600" />
+            </div>
+            <div className="mt-4 text-center">
+              <h3 className="text-lg font-medium text-gray-900">
                 Microfrontend Error
               </h3>
-              <p className="text-red-700 mt-1">
-                One of the microfrontends failed to load. This could be due to:
+              <p className="mt-2 text-sm text-gray-500">
+                There was an error loading this microfrontend. Please try refreshing the page.
               </p>
-              <ul className="list-disc list-inside text-red-700 mt-2 space-y-1">
-                <li>Network connectivity issues</li>
-                <li>Microfrontend service is down</li>
-                <li>Version compatibility issues</li>
-              </ul>
               <button
-                onClick={() => this.setState({ hasError: false })}
-                className="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
+                onClick={() => window.location.reload()}
+                className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
-                Try Again
+                Refresh Page
               </button>
             </div>
           </div>
