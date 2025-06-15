@@ -9,7 +9,8 @@ export default defineConfig({
       name: 'shell',
       remotes: {
         landing: 'http://localhost:3001/assets/remoteEntry.js',
-        dashboard: 'http://localhost:3002/assets/remoteEntry.js'
+        dashboard: 'http://localhost:3002/assets/remoteEntry.js',
+        //slides: 'http://localhost:3003/assets/remoteEntry.js'
       },
       shared: ['react', 'react-dom']
     })

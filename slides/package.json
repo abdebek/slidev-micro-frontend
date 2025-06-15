@@ -7,7 +7,7 @@
     "dev": "slidev --port 3003",
     "build": "slidev build",
     "export": "slidev export",
-    "preview": "serve dist --port 3001"
+    "preview": "serve dist --port 3003"
   },
   "dependencies": {
     "@slidev/cli": "^0.48.0-beta.19",

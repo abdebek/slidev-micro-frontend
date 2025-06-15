@@ -4,18 +4,21 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run dev:shell\" \"npm run dev:landing\" \"npm run dev:dashboard\"",
+  "dev": "concurrently \"npm run dev:shell\" \"npm run dev:landing\" \"npm run dev:dashboard\" \"npm run dev:slides\"",
+  "dev:slides": "cd slides && npm run dev",
     "dev:shell": "cd shell && npm run dev",
     "dev:landing": "cd landing && npm run dev",
     "dev:dashboard": "cd dashboard && npm run dev",
-    "build": "npm run build:shell && npm run build:landing && npm run build:dashboard",
+    "build": "npm run build:shell && npm run build:landing && npm run build:dashboard && npm run build:slides",
     "build:shell": "cd shell && npm run build",
     "build:landing": "cd landing && npm run build",
     "build:dashboard": "cd dashboard && npm run build",
-    "preview": "concurrently \"npm run preview:shell\" \"npm run preview:landing\" \"npm run preview:dashboard\"",
+    "build:slides": "cd slides && npm run build",
+    "preview": "concurrently \"npm run preview:shell\" \"npm run preview:landing\" \"npm run preview:dashboard\" \"npm run preview:slides\"",
     "preview:shell": "cd shell && npm run preview",
     "preview:landing": "cd landing && npm run preview",
-    "preview:dashboard": "cd dashboard && npm run preview"
+    "preview:dashboard": "cd dashboard && npm run preview",
+    "preview:slides": "cd slides && npm run preview"
   },
   "dependencies": {
     "lucide-react": "^0.344.0",

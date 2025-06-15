@@ -1,11 +1,9 @@
 import React, { Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import { Home, BarChart3, Menu, X } from 'lucide-react'
+import { Home, BarChart3, Menu, X, Presentation } from 'lucide-react'
 import ErrorBoundary from './components/ErrorBoundary'
-
-// @ts-ignore
+const Slides = React.lazy(() => import('./components/Slides'));
 const Landing = React.lazy(() => import('landing/App'))
-// @ts-ignore
 const Dashboard = React.lazy(() => import('dashboard/App'))
 
 function App() {
@@ -29,6 +27,13 @@ function App() {
                   >
                     <Home className="w-4 h-4 mr-2" />
                     Landing
+                  </Link>
+                  <Link
+                    to="/slides"
+                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors"
+                  >
+                    <Presentation className="w-4 h-4 mr-2" />
+                    Slides
                   </Link>
                   <Link
                     to="/dashboard"
@@ -85,6 +90,7 @@ function App() {
             }>
               <Routes>
                 <Route path="/" element={<Landing />} />
+                <Route path="/slides" element={<Slides />} />
                 <Route path="/dashboard" element={<Dashboard />} />
               </Routes>
             </Suspense>
