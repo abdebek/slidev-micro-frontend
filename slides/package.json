@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "slidev --port 3001",
+    "dev": "slidev --port 3003",
     "build": "slidev build",
     "export": "slidev export",
     "preview": "serve dist --port 3001"
